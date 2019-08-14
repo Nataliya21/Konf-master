@@ -15,13 +15,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
-public class Profile extends AppCompatActivity
+public class Add extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_add);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -44,12 +44,7 @@ public class Profile extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.profile, menu);
-        return true;
-    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -73,15 +68,14 @@ public class Profile extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_prof) {
-            Intent prof = new Intent(Profile.this, Profile.class);
-            startActivity(prof);
+            Intent profile = new Intent (Add.this, Profile.class);
+            startActivity(profile);
         } else if (id == R.id.nav_add) {
-            Intent add = new Intent(Profile.this, Add.class);
+            Intent add = new Intent(Add.this, Add.class);
             startActivity(add);
         } else if (id == R.id.nav_news) {
-            Intent main = new Intent(Profile.this, MainActivity.class);
+            Intent main = new Intent(Add.this, MainActivity.class);
             startActivity(main);
-
         } else if (id == R.id.nav_ex) {
 
         } else if (id == R.id.nav_about) {

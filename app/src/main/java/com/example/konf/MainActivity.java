@@ -94,6 +94,8 @@ public class MainActivity extends AppCompatActivity
             startActivity(profile);
         } else if (id == R.id.nav_add) {
             // Переход к списку заявок пользователя
+            Intent add = new Intent(MainActivity.this, Add.class);
+            startActivity(add);
         } else if (id == R.id.nav_news) {
             // Обновление мейн окна
             Intent main = new Intent(MainActivity.this, MainActivity.class);
@@ -101,7 +103,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_ex) {
             //Удаление данных из бд
         } else if (id == R.id.nav_about) {
-            //Алерт о приложении
+            //О приложении
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
