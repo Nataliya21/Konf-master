@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Конференции ЯГТУ</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Конференции ЯГТУ</string>
+    <string name="nav_header_subtitle">www.ystu.ru</string>
+    <string name="nav_header_desc">YSTU icon</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_prof">Профиль</string>
+    <string name="menu_add">Мои заявки</string>
+    <string name="menu_news">Новости</string>
+    <string name="menu_ex">Выход</string>
+    <string name="menu_about">О приложении</string>
+    <string name="title_activity_profile">Конференции ЯГТУ</string>
+
+
+</resources>
