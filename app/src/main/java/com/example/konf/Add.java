@@ -14,6 +14,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.widget.Adapter;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+
+import static com.example.konf.R.id.ll;
 
 public class Add extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -32,6 +40,12 @@ public class Add extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        LinearLayout ll = findViewById(R.id.ll);
+        //create and fill listview
+
+
+
     }
 
     @Override
