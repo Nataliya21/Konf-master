@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.konf">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/icon_ystu"
@@ -11,6 +9,7 @@
         android:roundIcon="@mipmap/icon_ystu_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Enter"></activity>
         <activity
             android:name=".Add"
             android:label="@string/title_activity_add"
@@ -30,5 +29,7 @@
             </intent-filter>
         </activity>
     </application>
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 </manifest>

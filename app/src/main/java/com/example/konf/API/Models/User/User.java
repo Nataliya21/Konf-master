@@ -16,7 +16,7 @@ public class User {
     Params[] params;
     String ProfileImage;
 
-    public User(JSONObject incom) {
+    public User(JSONObject incom) throws JSONException {
         try {
             this.Email = incom.getString("Email");
             this.FirstName = incom.getString("FirstName");

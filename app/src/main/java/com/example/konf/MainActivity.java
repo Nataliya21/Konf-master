@@ -90,8 +90,10 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_prof) {
             // Переход к профилю
-            Intent profile = new Intent (MainActivity.this, Profile.class);
-            startActivity(profile);
+            Intent ent = new Intent(MainActivity.this, Enter.class);
+            startActivity(ent);
+            /*Intent profile = new Intent (MainActivity.this, Profile.class);
+            startActivity(profile);*/
         } else if (id == R.id.nav_add) {
             // Переход к списку заявок пользователя
             Intent add = new Intent(MainActivity.this, Add.class);
