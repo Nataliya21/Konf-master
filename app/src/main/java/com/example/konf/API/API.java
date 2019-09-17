@@ -49,7 +49,7 @@ public class API {
     }
 
     public static String GetToken(String baseUrl, String login, String password) throws Exception {
-        String token = "";
+        String token;
 
         HttpClient httpClient = HttpClientBuilder.create().build();
         try {
@@ -63,7 +63,7 @@ public class API {
 
             StringEntity params = new StringEntity(jsonParams.toString());
             request.setEntity(params);
-            //request.setHeader("data", jsonParams.toString());
+            request.setHeader("data", jsonParams.toString());
 
             HttpResponse response = httpClient.execute(request);
             JSONObject resp = null;
@@ -73,8 +73,8 @@ public class API {
         switch (response.getStatusLine().getStatusCode()) {
             case 200:
                 if (!resp.getBoolean("error")) {
-                    JSONObject data = resp.getJSONObject("resp");
-                    token = data.getString("access_token");
+                    token = resp.getString("access_token");
+
                 } else {
 
                     throw new Exception("Ошибка выполнения запроса");

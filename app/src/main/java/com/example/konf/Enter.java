@@ -15,7 +15,7 @@ public class Enter extends AppCompatActivity {
 
     public Button enter, reg;
     public EditText log, pas;
-    String baseUrl="";
+    String baseUrl="https://localhost:44375/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
