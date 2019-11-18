@@ -15,7 +15,6 @@ public class Enter extends AppCompatActivity {
 
     public Button enter, reg;
     public EditText log, pas;
-    String baseUrl="https://localhost:44375/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +41,7 @@ public class Enter extends AppCompatActivity {
         });
     }
 
+    ///AsyncTask!!!!!!!!
     public void Enter(String login, String password)
     {
         String token = "";
@@ -61,7 +61,7 @@ public class Enter extends AppCompatActivity {
         }
         else{
             try{
-                token =  GetToken(baseUrl, login, password);
+                token =  GetToken(login, password);
             }
             catch(Exception e)
             {
