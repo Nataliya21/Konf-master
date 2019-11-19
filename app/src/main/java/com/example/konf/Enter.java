@@ -1,6 +1,8 @@
 package com.example.konf;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.konf.API.Models.User.RegSetting;
+
+import static com.example.konf.API.API.GetRegistSetting;
 import static com.example.konf.API.API.GetToken;
 import static com.example.konf.API.DB.SetToken;
 
@@ -36,15 +41,47 @@ public class Enter extends AppCompatActivity {
         reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Enter(log.getText().toString(),pas.getText().toString());
             }
         });
     }
 
     ///AsyncTask!!!!!!!!
+
+    private class Token extends AsyncTask<Void,Void, String> {
+        @Override
+        protected String doInBackground(Void... voids) {
+            String token = null;
+            try {
+                token = GetToken(log.getText().toString(), pas.getText().toString());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return token;
+        }
+
+        @Override
+        protected void onPostExecute(String aVoid){
+            super.onPostExecute(aVoid);
+            AlertDialog.Builder builder = new AlertDialog.Builder(Enter.this);
+            builder.setTitle("Внимание!").
+                    setMessage("Настраиваемы поля загружены!").
+                    setPositiveButton("Ок", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            onPause();
+                        }
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
+            SetToken(aVoid, Enter.this);
+            return;
+        }
+    }
+
+
     public void Enter(String login, String password)
     {
-        String token = "";
         if((login=="")||(password==""))
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(Enter.this);
@@ -61,14 +98,14 @@ public class Enter extends AppCompatActivity {
         }
         else{
             try{
-                token =  GetToken(login, password);
+                new Token().execute();
             }
             catch(Exception e)
             {
                 e.printStackTrace();
             }
 
-            SetToken(token,this);
+
         }
 
     }

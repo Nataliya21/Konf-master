@@ -66,8 +66,8 @@ public class MainActivity extends AppCompatActivity
         }
 
 
-        Test test = new Test();
-        test.execute();
+       // Test test = new Test();
+        //test.execute();
         //загрузка информации о конференции
 
     }

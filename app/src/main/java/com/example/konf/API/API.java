@@ -79,7 +79,20 @@ public class API {
     public static String GetToken(String login, String password) throws Exception {
         String token;
 
-        HttpClient httpClient = HttpClientBuilder.create().build();
+        HttpClient httpClient = null;
+        try
+        {
+            SchemeRegistry Current_Scheme = new SchemeRegistry();
+            Current_Scheme.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
+            Current_Scheme.register(new Scheme("https", new Naive_SSLSocketFactory(), 443));
+            HttpParams Current_Params = new BasicHttpParams();
+            ThreadSafeClientConnManager Current_Manager = new ThreadSafeClientConnManager(Current_Params,Current_Scheme);
+            httpClient = new DefaultHttpClient(Current_Manager, Current_Params);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
         try {
             HttpPost request = new HttpPost(baseUrl + "/Token");//задаем URL
             request.addHeader("content-type", "application/json; charset=UTF-8"); //задаем content-type, очень важно!
@@ -91,7 +104,7 @@ public class API {
 
             StringEntity params = new StringEntity(jsonParams.toString());
             request.setEntity(params);
-            request.setHeader("data", jsonParams.toString());
+            //request.setHeader("data", jsonParams.toString());????
 
             HttpResponse response = httpClient.execute(request);
             JSONObject resp = null;
@@ -141,7 +154,9 @@ public class API {
         }
 
         try {
-            HttpPost request =  new HttpPost(baseUrl +  "/api/Account/UserParams" );//задаем URL
+            //посмотреть правильно ли делается запрос у меня, потом попробовать разобраться с ервером и бд
+
+            HttpPost request =  new HttpPost("https://10.0.2.2:44375/api/Account/UserParams" );//задаем URL
             request.addHeader("content-type", "application/json; charset=UTF-8"); //задаем content-type, очень важно!
 
             HttpResponse response = httpClient.execute(request);
