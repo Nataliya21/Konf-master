@@ -39,17 +39,12 @@ public class Profile extends AppCompatActivity
         set.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent ps = new Intent(Profile.this, ProfileSetting.class);
+                startActivity(ps);
             }
         });
 
-        TextView add_foto = findViewById(R.id.add_foto);
-        add_foto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //открытие галереии и установка в имеджВью
-            }
-        });
+
     }
 
     @Override

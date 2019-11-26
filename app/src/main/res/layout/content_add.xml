@@ -25,27 +25,15 @@
         android:layout_marginRight="0dp"
         android:layout_marginBottom="0dp">
 
-        <LinearLayout
-            android:id="@+id/ll"
+        <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginBottom="0dp" />
     </ScrollView>
-
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignStart="@+id/sv"
-        android:layout_alignLeft="@+id/sv"
-        android:layout_alignTop="@+id/sv"
-        android:layout_alignEnd="@+id/sv"
-        android:layout_alignRight="@+id/sv"
-        android:layout_alignBottom="@+id/sv"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginBottom="0dp" />
 
 </RelativeLayout>

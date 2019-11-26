@@ -2,6 +2,7 @@ package com.example.konf;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.konf.API.Models.User.RegSetting;
 
@@ -20,6 +22,8 @@ public class Enter extends AppCompatActivity {
 
     public Button enter, reg;
     public EditText log, pas;
+    public TextView forgot;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,7 @@ public class Enter extends AppCompatActivity {
         reg = findViewById(R.id.reg);
         log = findViewById(R.id.login);
         pas = findViewById(R.id.password);
+        forgot = findViewById(R.id.textView2);
 
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,7 +46,15 @@ public class Enter extends AppCompatActivity {
         reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Enter(log.getText().toString(),pas.getText().toString());
+                Intent registr = new Intent(Enter.this, Registration.class);
+                startActivity(registr);
+            }
+        });
+
+        forgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //send message to server and do AlertDialog
             }
         });
     }
@@ -109,4 +122,6 @@ public class Enter extends AppCompatActivity {
         }
 
     }
+
+
 }

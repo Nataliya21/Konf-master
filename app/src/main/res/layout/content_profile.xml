@@ -9,39 +9,22 @@
     tools:showIn="@layout/app_bar_profile">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/profilePict"
         android:layout_width="113dp"
         android:layout_height="108dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginRight="28dp"
-        tools:srcCompat="@mipmap/icon_ystu" />
-
-    <TextView
-        android:id="@+id/add_foto"
-        android:layout_width="144dp"
-        android:layout_height="34dp"
-        android:layout_below="@+id/imageView2"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="226dp"
-        android:layout_marginLeft="226dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="41dp"
-        android:layout_marginRight="41dp"
-        android:autoLink="phone"
-        android:text="Добавить фото" />
+        android:layout_marginTop="37dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginRight="26dp"
+        android:background="@mipmap/icon_ystu_round" />
 
     <TextView
         android:id="@+id/name"
         android:layout_width="191dp"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageView2"
+        android:layout_alignTop="@+id/profilePict"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
@@ -114,48 +97,10 @@
         app:fontFamily="casual" />
 
     <TextView
-        android:id="@+id/univ"
-        android:layout_width="350dp"
-        android:layout_height="37dp"
-        android:layout_below="@+id/gender"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="17dp"
-        android:layout_marginLeft="17dp"
-        android:layout_marginTop="21dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginRight="44dp"
-        android:text="Универстите: "
-        android:textColor="@android:color/widget_edittext_dark"
-        android:textSize="18sp"
-        app:fontFamily="casual" />
-
-    <TextView
-        android:id="@+id/groupYstu"
-        android:layout_width="362dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/univ"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="17dp"
-        android:layout_marginLeft="17dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="31dp"
-        android:layout_marginRight="31dp"
-        android:text="Группа ЯГТУ:"
-        android:textColor="@android:color/widget_edittext_dark"
-        android:textSize="18sp"
-        app:fontFamily="casual" />
-
-    <TextView
         android:id="@+id/phone"
         android:layout_width="211dp"
         android:layout_height="40dp"
-        android:layout_below="@+id/groupYstu"
+        android:layout_below="@+id/gender"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
@@ -180,8 +125,27 @@
         android:layout_marginEnd="39dp"
         android:layout_marginRight="39dp"
         android:layout_marginBottom="36dp"
-        android:background="@color/colorAccent"
+        android:background="@drawable/button_rounded"
         android:text="Редактировать профиль"
         android:textAllCaps="true"
+        android:textColor="@color/ic_launcher_background"
         android:textSize="14sp" />
+
+    <ScrollView
+        android:id="@+id/Params"
+        android:layout_width="389dp"
+        android:layout_height="247dp"
+        android:layout_below="@+id/phone"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="21dp">
+
+        <LinearLayout
+            android:id="@+id/param"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
 </RelativeLayout>

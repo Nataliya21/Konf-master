@@ -3,6 +3,7 @@ package com.example.konf.API;
 
 import com.example.konf.API.Models.User.RegSetting;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
@@ -77,7 +78,7 @@ public class API {
     }
 
     public static String GetToken(String login, String password) throws Exception {
-        String token;
+        String token = "";
 
         HttpClient httpClient = null;
         try
@@ -104,29 +105,27 @@ public class API {
 
             StringEntity params = new StringEntity(jsonParams.toString());
             request.setEntity(params);
-            //request.setHeader("data", jsonParams.toString());????
+            request.setHeader("data", jsonParams.toString());//?????
 
             HttpResponse response = httpClient.execute(request);
-            JSONObject resp = null;
-            resp = new JSONObject(EntityUtils.toString(response.getEntity(), "UTF-8"));
 
+            JSONObject resp =  new JSONObject(EntityUtils.toString(response.getEntity(), "UTF-8"));
 
-        switch (response.getStatusLine().getStatusCode()) {
-            case 200:
-                if (!resp.getBoolean("error")) {
-                    token = resp.getString("access_token");
+            switch (response.getStatusLine().getStatusCode()) {
+                case 200:
+                    if (!resp.getBoolean("error")) {
+                        token = resp.getString("access_token");
 
-                } else {
+                    } else {
 
-                    throw new Exception("Ошибка выполнения запроса");
+                        throw new Exception("Ошибка выполнения запроса");
+                    }
+
+                    break;
+                    default:
+                        throw new Exception("Ошибка выполнения запроса");
+
                 }
-
-                break;
-
-            default:
-                throw new Exception("Ошибка выполнения запроса");
-
-            }
         }
         catch(Exception ex){
             throw new Exception("Ошибка выполнения запроса");

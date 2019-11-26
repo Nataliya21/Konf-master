@@ -21,7 +21,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import static com.example.konf.R.id.ll;
+
 
 public class Add extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -41,7 +41,7 @@ public class Add extends AppCompatActivity
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
-        LinearLayout ll = findViewById(R.id.ll);
+
         //create and fill listview
 
 

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfileSetting">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="724dp">
+
+                <EditText
+                    android:id="@+id/Name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="36dp"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="Имя"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/foto"
+                    android:layout_width="102dp"
+                    android:layout_height="92dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.558"
+                    app:layout_constraintStart_toEndOf="@+id/Name"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@mipmap/icon_ystu_round" />
+
+                <ImageButton
+                    android:id="@+id/takeFoto"
+                    android:layout_width="77dp"
+                    android:layout_height="41dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="40dp"
+                    android:layout_marginRight="40dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/foto"
+                    app:srcCompat="@drawable/ic_menu_camera" />
+
+                <EditText
+                    android:id="@+id/Surname"
+                    android:layout_width="243dp"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="20dp"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="Фамилия"
+                    app:layout_constraintEnd_toStartOf="@+id/takeFoto"
+                    app:layout_constraintHorizontal_bias="0.51"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/Name" />
+
+                <Button
+                    android:id="@+id/pass"
+                    android:layout_width="185dp"
+                    android:layout_height="47dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/button_rounded"
+                    android:text="Сменить пароль"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <EditText
+                    android:id="@+id/FatherName"
+                    android:layout_width="279dp"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="20dp"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:text="Отчество"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.181"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/Surname" />
+
+                <EditText
+                    android:id="@+id/phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="16dp"
+                    android:ems="10"
+                    android:inputType="phone"
+                    android:text="Телефон"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/email" />
+
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:ems="10"
+                    android:inputType="textEmailAddress"
+                    android:text="E-mail"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.131"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:layout_width="143dp"
+                    android:layout_height="65dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.096"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/FatherName">
+
+                    <RadioButton
+                        android:id="@+id/m"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="Мужской" />
+
+                    <RadioButton
+                        android:id="@+id/f"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Женский" />
+                </RadioGroup>
+
+                <ScrollView
+                    android:id="@+id/scrollView2"
+                    android:layout_width="360dp"
+                    android:layout_height="220dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.509"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/phone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" />
+                </ScrollView>
+
+                <Button
+                    android:id="@+id/save"
+                    android:layout_width="134dp"
+                    android:layout_height="46dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginRight="32dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/button_rounded"
+                    android:text="Сохранить"
+                    android:textColor="@color/ic_launcher_background"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+
+            </android.support.constraint.ConstraintLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
