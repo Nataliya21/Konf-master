@@ -131,21 +131,16 @@
         android:textColor="@color/ic_launcher_background"
         android:textSize="14sp" />
 
-    <ScrollView
-        android:id="@+id/Params"
-        android:layout_width="389dp"
-        android:layout_height="247dp"
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="249dp"
         android:layout_below="@+id/phone"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="18dp"
-        android:layout_marginLeft="18dp"
-        android:layout_marginTop="21dp">
+        android:layout_marginTop="22dp">
 
         <LinearLayout
-            android:id="@+id/param"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical" />
-    </ScrollView>
+    </HorizontalScrollView>
+
 </RelativeLayout>
