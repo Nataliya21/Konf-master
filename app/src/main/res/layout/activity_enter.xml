@@ -70,7 +70,7 @@
         android:layout_marginBottom="38dp"
         android:background="@drawable/button_rounded"
         android:text="Регистрация"
-        android:textColor="@color/ic_launcher_background"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="18sp" />
 
     <Button
@@ -85,7 +85,7 @@
         android:layout_marginBottom="38dp"
         android:background="@drawable/button_rounded"
         android:text="Вход"
-        android:textColor="@color/ic_launcher_background"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="18sp" />
 
     <TextView

@@ -6,4 +6,54 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".Add"
-    tools:showIn="@layout/app_bar_add"/>
+    tools:showIn="@layout/app_bar_add">
+
+    <Button
+        android:id="@+id/list"
+        android:layout_width="311dp"
+        android:layout_height="98dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="149dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:background="@drawable/button_rounded"
+        android:text="Мои заявки"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/conf"
+        android:layout_width="147dp"
+        android:layout_height="181dp"
+        android:layout_below="@+id/list"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="53dp"
+        android:layout_marginLeft="53dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/button_rounded"
+        android:text="Отправить заявку на участие"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/room"
+        android:layout_width="146dp"
+        android:layout_height="178dp"
+        android:layout_below="@+id/list"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="16dp"
+        android:layout_toEndOf="@+id/conf"
+        android:layout_toRightOf="@+id/conf"
+        android:background="@drawable/button_rounded"
+        android:text="Отправить заявку на общежитие"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp" />
+</RelativeLayout>
