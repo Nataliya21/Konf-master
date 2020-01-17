@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.konf.API.Models.User.RegSetting;
+import com.example.konf.API.Models.User.Token;
 
 import static com.example.konf.API.API.GetRegistSetting;
 import static com.example.konf.API.API.GetToken;
@@ -61,10 +62,10 @@ public class Enter extends AppCompatActivity {
 
     ///AsyncTask!!!!!!!!
 
-    private class Token extends AsyncTask<Void,Void, String> {
+    private class TokenA extends AsyncTask<Void,Void, Token> {
         @Override
-        protected String doInBackground(Void... voids) {
-            String token = null;
+        protected Token doInBackground(Void... voids) {
+            Token token = null;
             try {
                 token = GetToken(log.getText().toString(), pas.getText().toString());
             } catch (Exception e) {
@@ -74,11 +75,11 @@ public class Enter extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(String aVoid){
+        protected void onPostExecute(Token aVoid){
             super.onPostExecute(aVoid);
             AlertDialog.Builder builder = new AlertDialog.Builder(Enter.this);
             builder.setTitle("Внимание!").
-                    setMessage("Настраиваемы поля загружены!").
+                    setMessage("Вход!").
                     setPositiveButton("Ок", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -111,7 +112,7 @@ public class Enter extends AppCompatActivity {
         }
         else{
             try{
-                new Token().execute();
+                new TokenA().execute();
             }
             catch(Exception e)
             {

@@ -2,17 +2,15 @@ package com.example.konf.API;
 
 
 import com.example.konf.API.Models.User.RegSetting;
+import com.example.konf.API.Models.User.Token;
 
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.conn.scheme.PlainSocketFactory;
 import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.scheme.SchemeRegistry;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpParams;
@@ -20,12 +18,18 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 
 public class API {
 
-    static String baseUrl ="https://10.0.2.2:44375";
+    static String baseUrl ="http://127.0.0.1:80"; ///
 
     public  static void GetUser (String token) throws Exception{
 
@@ -77,59 +81,48 @@ public class API {
 
     }
 
-    public static String GetToken(String login, String password) throws Exception {
-        String token = "";
+    public static Token GetToken(String login, String password) throws Exception {
+        Token token = null;
+        URL object = new URL(baseUrl+"/Token");
 
-        HttpClient httpClient = null;
-        try
-        {
-            SchemeRegistry Current_Scheme = new SchemeRegistry();
-            Current_Scheme.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
-            Current_Scheme.register(new Scheme("https", new Naive_SSLSocketFactory(), 443));
-            HttpParams Current_Params = new BasicHttpParams();
-            ThreadSafeClientConnManager Current_Manager = new ThreadSafeClientConnManager(Current_Params,Current_Scheme);
-            httpClient = new DefaultHttpClient(Current_Manager, Current_Params);
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-        try {
-            HttpPost request = new HttpPost(baseUrl + "/Token");//задаем URL
-            request.addHeader("content-type", "application/json; charset=UTF-8"); //задаем content-type, очень важно!
+        try{
 
-            JSONObject jsonParams = new JSONObject();//Создаем и заполняем объект параметров
+            HttpURLConnection con = (HttpURLConnection) object.openConnection();
+            con.setDoOutput(true);
+            con.setDoInput(true);
+            con.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+            con.setRequestProperty("Accept", "application/json");
+            con.setRequestMethod("POST");
+
+            JSONObject jsonParams = new JSONObject();
+
             jsonParams.put("grant_type", "password");
             jsonParams.put("username", login);
             jsonParams.put("password", password);
 
-            StringEntity params = new StringEntity(jsonParams.toString());
-            request.setEntity(params);
-            request.setHeader("data", jsonParams.toString());//?????
+            OutputStream writer = con.getOutputStream();
+            String buffer = jsonParams.toString();
+            writer.write(buffer.getBytes("UTF-8"));
+            writer.close();
 
-            HttpResponse response = httpClient.execute(request);
+            if(con.getResponseCode() != HttpURLConnection.HTTP_CREATED){
+                throw new RuntimeException("Failed: HTTP error code : "
+                        + con.getResponseCode());
+            }
 
-            JSONObject resp =  new JSONObject(EntityUtils.toString(response.getEntity(), "UTF-8"));
+            InputStream inputStream = new BufferedInputStream(con.getInputStream());
+            String result = org.apache.commons.io.IOUtils.toString(inputStream, "UTF-8");
+            JSONObject res = new JSONObject(result);
 
-            switch (response.getStatusLine().getStatusCode()) {
-                case 200:
-                    if (!resp.getBoolean("error")) {
-                        token = resp.getString("access_token");
+            token = new Token(res);
 
-                    } else {
-
-                        throw new Exception("Ошибка выполнения запроса");
-                    }
-
-                    break;
-                    default:
-                        throw new Exception("Ошибка выполнения запроса");
-
-                }
+            inputStream.close();
+            con.disconnect();
         }
-        catch(Exception ex){
-            throw new Exception("Ошибка выполнения запроса");
+        catch(Exception e){
+            e.printStackTrace();
         }
+
         return token;
     }
 
