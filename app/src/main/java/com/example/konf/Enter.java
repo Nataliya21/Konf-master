@@ -10,11 +10,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.konf.API.Models.User.RegSetting;
 import com.example.konf.API.Models.User.Token;
 
+import static com.example.konf.API.API.ForgotPass;
 import static com.example.konf.API.API.GetRegistSetting;
 import static com.example.konf.API.API.GetToken;
 import static com.example.konf.API.DB.SetToken;
@@ -24,6 +26,7 @@ public class Enter extends AppCompatActivity {
     public Button enter, reg;
     public EditText log, pas;
     public TextView forgot;
+    public ProgressBar spiner;
 
 
     @Override
@@ -36,6 +39,7 @@ public class Enter extends AppCompatActivity {
         log = findViewById(R.id.login);
         pas = findViewById(R.id.password);
         forgot = findViewById(R.id.textView2);
+        spiner = findViewById(R.id.pg);
 
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,44 +59,85 @@ public class Enter extends AppCompatActivity {
         forgot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //send message to server and do AlertDialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(Enter.this);
+                builder.setTitle("Внимание!")
+                        .setMessage("Вы забыли пароль!")
+                        .setNegativeButton("ОК",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+                AlertDialog alert = builder.create();
+                alert.show();
+                new Forgot().execute();
             }
         });
     }
 
-    ///AsyncTask!!!!!!!!
-
     private class TokenA extends AsyncTask<Void,Void, Token> {
+
+        @Override
+        protected void onPreExecute(){
+           spiner.setVisibility(View.VISIBLE);
+           enter.setVisibility(View.INVISIBLE);
+           reg.setVisibility(View.INVISIBLE);
+           //super.onPreExecut();
+        }
+
         @Override
         protected Token doInBackground(Void... voids) {
-            Token token = null;
-            try {
-                token = GetToken(log.getText().toString(), pas.getText().toString());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            Token token = GetToken(log.getText().toString(), pas.getText().toString(), Enter.this);
             return token;
         }
 
         @Override
         protected void onPostExecute(Token aVoid){
             super.onPostExecute(aVoid);
-            AlertDialog.Builder builder = new AlertDialog.Builder(Enter.this);
-            builder.setTitle("Внимание!").
-                    setMessage("Вход!").
-                    setPositiveButton("Ок", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            onPause();
-                        }
-                    });
-            AlertDialog alert = builder.create();
-            alert.show();
-            SetToken(aVoid, Enter.this);
+
+            spiner.setVisibility(View.GONE);
+            enter.setVisibility(View.VISIBLE);
+            reg.setVisibility(View.VISIBLE);
+
+            if(aVoid!=null) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(Enter.this);
+                builder.setTitle("Внимание!").
+                        setMessage("Вход!").
+                        setPositiveButton("Ок", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                onPause();
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+            else{
+                AlertDialog.Builder bldr = new AlertDialog.Builder(Enter.this);
+                bldr.setTitle("Внимание!").
+                        setMessage("Неудалось выполнить вход!").
+                        setPositiveButton("Ок", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                onPause();
+                            }
+                        });
+                AlertDialog alrt = bldr.create();
+                alrt.show();
+            }
+
             return;
         }
     }
 
+    private class Forgot extends AsyncTask<Void,Void,Boolean>{
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+            return ForgotPass(log.getText().toString());
+        }
+    }
 
     public void Enter(String login, String password)
     {
@@ -113,13 +158,13 @@ public class Enter extends AppCompatActivity {
         else{
             try{
                 new TokenA().execute();
+                Intent prof = new Intent(Enter.this, Profile.class);
+                startActivity(prof);
             }
             catch(Exception e)
             {
                 e.printStackTrace();
             }
-
-
         }
 
     }

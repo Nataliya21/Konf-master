@@ -11,10 +11,17 @@ import net.rehacktive.waspdb.WaspHash;
 public class DB {
 
     public static void SetToken(Token token, Context context){
-        WaspDb Db = WaspFactory.openOrCreateDatabase(context.getFilesDir().getPath(), "MedDB", "pass");
+        WaspDb Db = WaspFactory.openOrCreateDatabase(context.getFilesDir().getPath(), "KonfDB", "pass");
         WaspHash hash = Db.openOrCreateHash("Token");
 
-        hash.put("Token", token);
+        hash.put("token1", token);
+    }
+
+    public static Token GetTokenFromDb(Context context){
+        WaspDb Db = WaspFactory.openOrCreateDatabase(context.getFilesDir().getPath(), "KonfDB","pass");
+        WaspHash hash = Db.openOrCreateHash("Token");
+
+        return hash.get("token1");// получение не правильное или запись
     }
 
 }

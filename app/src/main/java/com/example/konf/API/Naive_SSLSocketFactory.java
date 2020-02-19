@@ -30,3 +30,4 @@ public class Naive_SSLSocketFactory extends SSLSocketFactory {
         return Cur_SSL_Context.getSocketFactory().createSocket();
     }
 }
+

@@ -1,9 +1,12 @@
 package com.example.konf;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -17,8 +20,20 @@ import android.view.Menu;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.konf.API.Models.User.Token;
+import com.example.konf.API.Models.User.User;
+
+import static com.example.konf.API.API.GetToken;
+import static com.example.konf.API.API.GetUser;
+import static com.example.konf.API.DB.GetTokenFromDb;
+import static com.example.konf.API.DB.SetToken;
+
 public class Profile extends AppCompatActivity
+
+
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    TextView name, surename, fathername, gender, phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +50,14 @@ public class Profile extends AppCompatActivity
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
+        name = findViewById(R.id.name);
+        surename = findViewById(R.id.surname);
+        fathername = findViewById(R.id.fathername);
+        gender = findViewById(R.id.gender);
+        phone = findViewById(R.id.phone);
+
+
+
         Button set = findViewById(R.id.setting);
         set.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,7 +67,51 @@ public class Profile extends AppCompatActivity
             }
         });
 
+        Getter();
+    }
 
+    private void Getter(){
+        Token token = GetTokenFromDb(Profile.this);
+        String tkn = token.GetToken();
+        new UserInfo().execute(tkn);
+    }
+    private class UserInfo extends AsyncTask<String,Void, User> {
+        @Override
+        protected User doInBackground(String... voids) {
+
+            String bfr = voids[0];
+            User user = GetUser(bfr) ;
+
+            return user;
+        }
+
+        @Override
+        protected void onPostExecute(User aVoid){
+            super.onPostExecute(aVoid);
+
+            if(aVoid!=null) {
+
+                name.setText(name+" "+aVoid.GetName());
+                surename.setText(surename+" "+aVoid.GetSecondName());
+                fathername.setText(fathername+" "+aVoid.GetFatherName());
+                gender.setText(gender+" "+aVoid.GetGender());
+                phone.setText(phone+" "+aVoid.GetPhone());
+            }
+            else{
+                AlertDialog.Builder bldr = new AlertDialog.Builder(Profile.this);
+                bldr.setTitle("Внимание!").
+                        setMessage("Неудалось получить данные пользователя!").
+                        setPositiveButton("Ок", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                onPause();
+                            }
+                        });
+                AlertDialog alrt = bldr.create();
+                alrt.show();
+            }
+            return;
+        }
     }
 
     @Override

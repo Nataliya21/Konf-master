@@ -5,16 +5,17 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.jar.Attributes;
 
 public class User {
-    String Email;
-    String FirstName;
-    String SecondName;
-    String FathersName;
-    String Phone;
-    String Gender;
-    Params[] params;
-    String ProfileImage;
+    private String Email;
+    private String FirstName;
+    private String SecondName;
+    private String FathersName;
+    private String Phone;
+    private String Gender;
+    private Params[] params;
+    private String ProfileImage;
 
     public User(JSONObject incom) throws JSONException {
         try {
@@ -46,4 +47,14 @@ public class User {
             e.printStackTrace();
         }
     }
+
+    public String GetName(){return FirstName; }
+    public String GetSecondName(){return SecondName; }
+    public String GetFatherName(){return FathersName; }
+    public String GetEmail(){return Email; }
+    public String GetPhone(){return Phone; }
+    public String GetGender() {return Gender;}
+    public Params[] GetParams(){return params;}
+    public String GetPic(){return ProfileImage;}
+
 }
