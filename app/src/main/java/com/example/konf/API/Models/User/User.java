@@ -8,14 +8,15 @@ import java.util.ArrayList;
 import java.util.jar.Attributes;
 
 public class User {
-    private String Email;
-    private String FirstName;
-    private String SecondName;
-    private String FathersName;
-    private String Phone;
-    private String Gender;
-    private Params[] params;
-    private String ProfileImage;
+    String Email;
+    String FirstName;
+    String SecondName;
+    String FathersName;
+    String Phone;
+    String Gender;
+    Params[] params;
+    String ProfileImage;
+    String BirthDate;
 
     public User(JSONObject incom) throws JSONException {
         try {
@@ -26,6 +27,7 @@ public class User {
             this.Phone = incom.getString("Phone");
             this.Gender = incom.getString("Gender");
             this.ProfileImage = incom.getString("ProfileImage");
+            this.BirthDate = incom.getString("BirthDate");
 
             JSONArray params = incom.getJSONArray("Params");
             ArrayList<Params> Param = new ArrayList<>();
@@ -34,9 +36,9 @@ public class User {
                 JSONObject param = params.getJSONObject(i);
                 Params p = new Params();
 
-                p.Id = param.getString("Id");
-                p.Name = param.getString("Name");
-                p.Value = param.getString("Value");
+                p.SetId(param.getString("Id"));
+                p.SetName(param.getString("Name"));
+                p.SetValue(param.getString("Value"));
 
                 Param.add(p);
             }
@@ -56,5 +58,6 @@ public class User {
     public String GetGender() {return Gender;}
     public Params[] GetParams(){return params;}
     public String GetPic(){return ProfileImage;}
+    public String GetBirthDate(){return BirthDate;}
 
 }

@@ -67,14 +67,15 @@ public class Profile extends AppCompatActivity
             }
         });
 
-        Getter();
+        try{
+            Token token = GetTokenFromDb(Profile.this);
+            String tkn = token.GetToken();
+            new UserInfo().execute(tkn);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
-    private void Getter(){
-        Token token = GetTokenFromDb(Profile.this);
-        String tkn = token.GetToken();
-        new UserInfo().execute(tkn);
-    }
     private class UserInfo extends AsyncTask<String,Void, User> {
         @Override
         protected User doInBackground(String... voids) {
@@ -91,11 +92,11 @@ public class Profile extends AppCompatActivity
 
             if(aVoid!=null) {
 
-                name.setText(name+" "+aVoid.GetName());
-                surename.setText(surename+" "+aVoid.GetSecondName());
-                fathername.setText(fathername+" "+aVoid.GetFatherName());
-                gender.setText(gender+" "+aVoid.GetGender());
-                phone.setText(phone+" "+aVoid.GetPhone());
+                name.setText("Имя: "+aVoid.GetName());
+                surename.setText("Фамилия: "+aVoid.GetSecondName());
+                fathername.setText("Отчество: "+aVoid.GetFatherName());
+                gender.setText("Пол: "+aVoid.GetGender());
+                phone.setText("Телефон "+aVoid.GetPhone());
             }
             else{
                 AlertDialog.Builder bldr = new AlertDialog.Builder(Profile.this);

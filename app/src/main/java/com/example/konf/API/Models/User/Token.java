@@ -4,8 +4,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Token {
-    private String Token;
-    private String Date;
+    String Token;
+    String Date;
 
     public Token(JSONObject incom) throws JSONException {
         try{
@@ -15,6 +15,8 @@ public class Token {
             e.printStackTrace();
         }
     }
+
+    public Token(){}
 
     public String GetToken(){
         return this.Token;
