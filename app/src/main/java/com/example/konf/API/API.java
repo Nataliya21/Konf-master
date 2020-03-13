@@ -1,5 +1,6 @@
 package com.example.konf.API;
 
+import android.app.ExpandableListActivity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,6 +13,9 @@ import com.example.konf.API.Models.Application.ApplicSetting;
 import com.example.konf.API.Models.Application.Application;
 import com.example.konf.API.Models.Application.DocList;
 import com.example.konf.API.Models.Application.Document;
+import com.example.konf.API.Models.News.Comments;
+import com.example.konf.API.Models.News.News;
+import com.example.konf.API.Models.News.NewsArray;
 import com.example.konf.API.Models.User.Params;
 import com.example.konf.API.Models.User.RegSetting;
 import com.example.konf.API.Models.User.Token;
@@ -29,6 +33,7 @@ import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -755,7 +760,7 @@ public class API {
         }
     }
 
-    //Covertors
+    //Convertors
 
     public static String ConvertToBase64(Bitmap imageBitmap){
         String convert = null;
@@ -781,4 +786,310 @@ public class API {
         return imageBitmap;
     }
 
+    //News API
+
+    public static NewsArray GetNewsArray(int pageNumber){
+        NewsArray array = null;
+
+        try{
+            URL url =  new URL(baseUrl+"/api/News/GetNews?pageNumber="+pageNumber);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+            connection.setRequestProperty("Accept","application/json");
+            //connection.setRequestProperty("Authorization", "Bearer " + token);
+            connection.setDoOutput(true);
+            connection.setDoInput(true);
+
+            Log.i("STATUS",String.valueOf(connection.getResponseCode()));
+            Log.i("MSG", connection.getResponseMessage());
+
+            connection.connect();
+            int status=connection.getResponseCode();
+
+            switch (status){
+                case 200:
+                case 201:
+                    BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                    StringBuilder sb = new StringBuilder();
+                    String line;
+                    while((line = br.readLine()) != null){
+                        sb.append(line);
+                    }
+                    br.close();
+                    JSONObject object = new JSONObject(sb.toString());
+                    array = new NewsArray(object);
+                    break;
+                default:
+                    break;
+            }
+            connection.disconnect();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return array;
+    }
+
+    public static NewsArray GetNewsArray(String token, int pageNumber){
+        NewsArray array = null;
+
+        try{
+            URL url =  new URL(baseUrl+"/api/News/GetNews?pageNumber="+pageNumber);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+            connection.setRequestProperty("Accept","application/json");
+            connection.setRequestProperty("Authorization", "Bearer " + token);
+            connection.setDoOutput(true);
+            connection.setDoInput(true);
+
+            Log.i("STATUS",String.valueOf(connection.getResponseCode()));
+            Log.i("MSG", connection.getResponseMessage());
+
+            connection.connect();
+            int status=connection.getResponseCode();
+
+            switch (status){
+                case 200:
+                case 201:
+                    BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                    StringBuilder sb = new StringBuilder();
+                    String line;
+                    while((line = br.readLine()) != null){
+                        sb.append(line);
+                    }
+                    br.close();
+                    JSONObject object = new JSONObject(sb.toString());
+                    array = new NewsArray(object);
+                    break;
+                default:
+                    break;
+            }
+            connection.disconnect();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return array;
+    }
+
+    public static News GetNews(String newsId){
+        News news = null;
+
+        try{
+            URL url = new URL(baseUrl+"/api/News/GetNewsPage?id=" + newsId);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+            connection.setRequestProperty("Accept","application/json");
+            //connection.setRequestProperty("Authorization", "Bearer " + token);
+            connection.setDoOutput(true);
+            connection.setDoInput(true);
+
+            Log.i("STATUS",String.valueOf(connection.getResponseCode()));
+            Log.i("MSG", connection.getResponseMessage());
+
+            connection.connect();
+            int status=connection.getResponseCode();
+
+            switch (status){
+                case 200:
+                case 201:
+                    BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                    StringBuilder sb = new StringBuilder();
+                    String line;
+                    while((line = br.readLine()) != null){
+                        sb.append(line);
+                    }
+                    br.close();
+                    JSONObject object = new JSONObject(sb.toString());
+                    news = new News(object);
+                    break;
+                default:
+                    break;
+            }
+            connection.disconnect();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return news;
+    }
+
+    public static News GetNews(String token, String newsId){
+        News news = null;
+
+        try{
+            URL url = new URL(baseUrl+"/api/News/GetNewsPage?id=" + newsId);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+            connection.setRequestProperty("Accept","application/json");
+            connection.setRequestProperty("Authorization", "Bearer " + token);
+            connection.setDoOutput(true);
+            connection.setDoInput(true);
+
+            Log.i("STATUS",String.valueOf(connection.getResponseCode()));
+            Log.i("MSG", connection.getResponseMessage());
+
+            connection.connect();
+            int status=connection.getResponseCode();
+
+            switch (status){
+                case 200:
+                case 201:
+                    BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                    StringBuilder sb = new StringBuilder();
+                    String line;
+                    while((line = br.readLine()) != null){
+                        sb.append(line);
+                    }
+                    br.close();
+                    JSONObject object = new JSONObject(sb.toString());
+                    news = new News(object);
+                    break;
+                default:
+                    break;
+            }
+            connection.disconnect();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return news;
+    }
+
+    public static Comments GetCommentsPage(String pageNumber, String newsId){
+        Comments comments = null;
+
+        try{
+            URL url = new URL(baseUrl + "/api/News/GetCommentsForPage?pageNumber=" + pageNumber + "&newsId=" + newsId);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+            connection.setRequestProperty("Accept","application/json");
+            connection.setDoOutput(true);
+            connection.setDoInput(true);
+
+            Log.i("STATUS",String.valueOf(connection.getResponseCode()));
+            Log.i("MSG", connection.getResponseMessage());
+
+            connection.connect();
+            int status=connection.getResponseCode();
+
+            switch (status){
+                case 200:
+                case 201:
+                    BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                    StringBuilder sb = new StringBuilder();
+                    String line;
+                    while((line = br.readLine()) != null){
+                        sb.append(line);
+                    }
+                    br.close();
+                    JSONObject object = new JSONObject(sb.toString());
+                    comments = new Comments(object);
+                    break;
+                default:
+                    break;
+            }
+            connection.disconnect();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return comments;
+    }
+
+    public static void Comment(String token, String newsId){
+
+        try{
+            URL url = new URL(baseUrl+"/api/News/Comment");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+            connection.setRequestProperty("Accept","application/json");
+            connection.setRequestProperty("Authorization", "Bearer " + token);
+            connection.setDoOutput(true);
+            connection.setDoInput(true);
+
+            Log.i("STATUS",String.valueOf(connection.getResponseCode()));
+            Log.i("MSG", connection.getResponseMessage());
+
+            connection.connect();
+
+            connection.disconnect();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void DeleteComment(String token, String commentId){
+
+        try{
+            URL url = new URL(baseUrl+"/api/News/RemoveComment?commentId=" + commentId);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+            connection.setRequestProperty("Accept","application/json");
+            connection.setRequestProperty("Authorization", "Bearer " + token);
+            connection.setDoOutput(true);
+            connection.setDoInput(true);
+
+            Log.i("STATUS",String.valueOf(connection.getResponseCode()));
+            Log.i("MSG", connection.getResponseMessage());
+
+            connection.connect();
+            connection.disconnect();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void Like(String token, String newsId){
+
+        try{
+            URL url = new URL(baseUrl+"/api/News/Like?pageId=" + newsId);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+            connection.setRequestProperty("Accept","application/json");
+            connection.setRequestProperty("Authorization", "Bearer " + token);
+            connection.setDoOutput(true);
+            connection.setDoInput(true);
+
+            Log.i("STATUS",String.valueOf(connection.getResponseCode()));
+            Log.i("MSG", connection.getResponseMessage());
+
+            connection.connect();
+            connection.disconnect();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void DisLike(String token, String newsId){
+
+        try{
+            URL url = new URL(baseUrl+"/api/News/Dislike?pageId=" + newsId);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
+            connection.setRequestProperty("Accept","application/json");
+            connection.setRequestProperty("Authorization", "Bearer " + token);
+            connection.setDoOutput(true);
+            connection.setDoInput(true);
+
+            Log.i("STATUS",String.valueOf(connection.getResponseCode()));
+            Log.i("MSG", connection.getResponseMessage());
+
+            connection.connect();
+            connection.disconnect();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }
