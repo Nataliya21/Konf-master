@@ -14,4 +14,8 @@ public class Complaints {
             e.printStackTrace();
         }
     }
+
+    public String GetCompl(){return Complaint;}
+
+    public String GetDate(){return Date;}
 }

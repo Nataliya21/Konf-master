@@ -29,4 +29,6 @@ public class Comments {
             e.printStackTrace();
         }
     }
+
+    public Comment[] GetComments(){return comments;}
 }

@@ -1,5 +1,7 @@
 package com.example.konf.API.Models.Application;
 
+import android.graphics.Typeface;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,4 +39,16 @@ public class ApplicSetting {
             e.printStackTrace();
         }
     }
+
+    public Boolean GetR(){return Requred;}
+
+    public String GetName(){return DisplayName;}
+
+    public String GetId(){return Id;}
+
+    public String GetType(){return Type;}
+
+    public String GetDefault(){return DefaultValue;}
+
+    public String[] GetValueToPick(){return ValueToPik;}
 }

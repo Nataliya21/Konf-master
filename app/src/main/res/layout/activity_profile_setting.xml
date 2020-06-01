@@ -118,10 +118,10 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.131"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+                    app:layout_constraintTop_toBottomOf="@+id/gender" />
 
                 <RadioGroup
-                    android:id="@+id/radioGroup"
+                    android:id="@+id/gender"
                     android:layout_width="143dp"
                     android:layout_height="65dp"
                     android:layout_marginTop="20dp"
@@ -159,16 +159,20 @@
                     app:layout_constraintEnd_toEndOf="parent" />
 
                 <HorizontalScrollView
+                    android:id="@+id/hsv"
                     android:layout_width="413dp"
                     android:layout_height="174dp"
                     android:layout_marginTop="16dp"
+                    app:layout_constraintBottom_toTopOf="@+id/pass"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/phone"
-                    tools:layout_editor_absoluteX="-1dp">
+                    app:layout_constraintVertical_bias="0.293">
 
                     <LinearLayout
+                        android:id="@+id/llh"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:orientation="vertical" />
+                        android:orientation="horizontal"></LinearLayout>
                 </HorizontalScrollView>
 
                 <EditText
@@ -179,7 +183,7 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
                     android:ems="10"
-                    android:inputType="date"
+                    android:inputType="text"
                     android:text="11/12/1990"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/FatherName" />

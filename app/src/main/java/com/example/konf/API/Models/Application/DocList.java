@@ -34,4 +34,12 @@ public class DocList {
             e.printStackTrace();
         }
     }
+
+    public Boolean isRequred(){return Requred;}
+
+    public String GetName(){return DisplayName;}
+
+    public String [] GetExtentions(){return PossibleExtentions;}
+
+    public String GetId(){return Id;}
 }

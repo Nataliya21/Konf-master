@@ -18,5 +18,9 @@ public class Application {
         }
     }
 
+    public String GetId(){return Id;}
 
+    public String GetName(){return Name;}
+
+    public String GetDate(){return Date;}
 }

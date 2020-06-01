@@ -16,7 +16,12 @@
         android:roundIcon="@mipmap/icon_ystu_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Registration"></activity>
+        <activity android:name=".appInfo"></activity>
+        <activity android:name=".ConfFrom" />
+        <activity android:name=".List" />
+        <activity android:name=".CommentPage" />
+        <activity android:name=".News" />
+        <activity android:name=".Registration" />
         <activity android:name=".Forgot_password" />
         <activity android:name=".ProfileSetting" />
         <activity android:name=".Enter" />
@@ -34,7 +39,8 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <action android:name="com.package.name.MainActivity"/>
+                <action android:name="com.package.name.MainActivity" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

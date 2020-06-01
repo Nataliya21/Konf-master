@@ -16,4 +16,10 @@ public class Comment {
             e.printStackTrace();
         }
     }
+
+    public String GetCommentId(){return CommentId;}
+
+    public String GetUserName(){return UserName;}
+
+    public String GetComment(){return Comment;}
 }

@@ -21,6 +21,7 @@ public class Token {
     public String GetToken(){
         return this.Token;
     }
+    public String GetDate(){return this.Date;}
     public void SetToken(Token obj){
         this.Token = obj.Token;
         this.Date = obj.Date;

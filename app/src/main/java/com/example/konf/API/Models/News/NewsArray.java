@@ -29,4 +29,6 @@ public class NewsArray {
             e.printStackTrace();
         }
     }
+
+    public News[] GetNews(){return this.news;}
 }

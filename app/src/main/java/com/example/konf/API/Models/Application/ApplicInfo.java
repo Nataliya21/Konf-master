@@ -58,4 +58,18 @@ public class ApplicInfo {
             e.printStackTrace();
         }
     }
+
+    public String GetStatus(){return Status;}
+
+    public String GetTime(){return FiledTime;}
+
+    public ApplParams[] GetParams(){return params;}
+
+    public String[] GetDocs(){return Documents;}
+
+    public Complaints[] GetCompl(){return complaints;}
+
+    public Boolean isEditable(){return Editable;}
+
+
 }

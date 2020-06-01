@@ -9,38 +9,82 @@
     tools:showIn="@layout/app_bar_main" >
 
     <TextView
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="39dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="13dp"
+        android:layout_marginRight="13dp"
+        android:layout_marginBottom="14dp"
+        android:layout_toStartOf="@+id/page"
+        android:layout_toLeftOf="@+id/page"
+        android:text="<<Назад"
+        android:textColor="@android:color/widget_edittext_dark"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/page"
+        android:layout_width="wrap_content"
+        android:layout_height="39dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="23dp"
+        android:layout_marginRight="23dp"
+        android:layout_marginBottom="14dp"
+        android:layout_toStartOf="@+id/next"
+        android:layout_toLeftOf="@+id/next"
+        android:text="0"
+        android:textColor="@android:color/widget_edittext_dark"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/next"
+        android:layout_width="wrap_content"
+        android:layout_height="39dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginBottom="14dp"
+        android:text="Вперед>>"
+        android:textColor="@android:color/widget_edittext_dark"
+        android:textSize="18sp" />
+
+    <TextView
         android:id="@+id/Info"
-        android:layout_width="363dp"
-        android:layout_height="73dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="27dp"
-        android:layout_marginLeft="27dp"
-        android:layout_marginEnd="21dp"
-        android:layout_marginRight="21dp"
-        android:layout_marginBottom="37dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginRight="23dp"
+        android:layout_marginBottom="124dp"
         android:gravity="start"
         android:textAlignment="textStart"
         android:textSize="18sp" />
 
     <ScrollView
-        android:layout_width="345dp"
-        android:layout_height="477dp"
+        android:id="@+id/sv"
+        android:layout_width="match_parent"
+        android:layout_height="563dp"
         android:layout_above="@+id/Info"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginStart="26dp"
-        android:layout_marginLeft="26dp"
-        android:layout_marginEnd="38dp"
-        android:layout_marginRight="38dp"
-        android:layout_marginBottom="53dp">
+        android:layout_marginStart="-4dp"
+        android:layout_marginLeft="-4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="48dp">
 
         <LinearLayout
+            android:id="@+id/ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" />

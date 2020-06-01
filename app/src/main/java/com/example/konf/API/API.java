@@ -1003,7 +1003,7 @@ public class API {
         return comments;
     }
 
-    public static void Comment(String token, String newsId){
+    public static void Comment(String token, String newsId, String comment){
 
         try{
             URL url = new URL(baseUrl+"/api/News/Comment");
@@ -1014,6 +1014,17 @@ public class API {
             connection.setRequestProperty("Authorization", "Bearer " + token);
             connection.setDoOutput(true);
             connection.setDoInput(true);
+
+            JSONObject param = new JSONObject();
+            param.put("PageId", newsId);
+            param.put("Comment", comment);
+
+            Log.i("JSON",param.toString());
+            DataOutputStream os = new DataOutputStream(connection.getOutputStream());
+            os.writeBytes(param.toString());
+
+            os.flush();
+            os.close();
 
             Log.i("STATUS",String.valueOf(connection.getResponseCode()));
             Log.i("MSG", connection.getResponseMessage());

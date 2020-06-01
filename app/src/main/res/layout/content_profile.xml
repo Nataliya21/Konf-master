@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/profilePict"
-        android:layout_width="113dp"
-        android:layout_height="108dp"
+        android:layout_width="155dp"
+        android:layout_height="154dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
@@ -132,15 +132,17 @@
         android:textSize="14sp" />
 
     <HorizontalScrollView
+        android:id="@+id/hsv"
         android:layout_width="match_parent"
         android:layout_height="249dp"
         android:layout_below="@+id/phone"
-        android:layout_marginTop="22dp">
+        android:layout_marginTop="22dp" >
 
         <LinearLayout
+            android:id="@+id/llh"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="vertical" />
+            android:orientation="horizontal"></LinearLayout>
     </HorizontalScrollView>
 
 </RelativeLayout>

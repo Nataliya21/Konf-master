@@ -50,6 +50,19 @@ public class User {
         }
     }
 
+    public User(String Email, String FirstName, String SecondName, String FatherName, String Phone,
+                String Gender, Params[] params, String ProfilePic, String BirthDate){
+        this.Email = Email;
+        this.FirstName = FirstName;
+        this.SecondName = SecondName;
+        this.FathersName = FatherName;
+        this.Phone = Phone;
+        this.Gender = Gender;
+        this.params = params;
+        this.ProfileImage = ProfilePic;
+        this.BirthDate = BirthDate;
+    }
+
     public String GetName(){return FirstName; }
     public String GetSecondName(){return SecondName; }
     public String GetFatherName(){return FathersName; }

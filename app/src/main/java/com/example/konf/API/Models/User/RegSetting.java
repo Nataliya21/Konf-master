@@ -38,4 +38,16 @@ public class RegSetting {
         }
 
     }
+
+    public String GetName(){return DisplayName;}
+
+    public String GetType(){return Type;}
+
+    public Boolean GetR(){return Requred;}
+
+    public String GetId(){return Id;}
+
+    public String GetDefault(){return DefaultValue;}
+
+    public String[] GetValueToPick(){return ValueToPick;}
 }

@@ -43,4 +43,20 @@ public class News {
             e.printStackTrace();
         }
     }
+
+    public String GetId(){return this.NewsId;}
+
+    public String GetImg(){return this.Image;}
+
+    public String GetHeader(){return this.Header;}
+
+    public String GetPreview(){return this.PreviewText;}
+
+    public String GetBody(){return this.Body;}
+
+    public String GetTime(){return this.TimePosted;}
+
+    public Boolean IsLikede(){return this.IsLikedyMe;}
+
+    public int GetLikeCount(){return this.LikesCount;}
 }

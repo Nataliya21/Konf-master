@@ -15,6 +15,13 @@ public class ApplParams {
         }
     }
 
+    public ApplParams(String Id){this.Id = Id;}
+
+    public ApplParams(String Id, String value){
+        this.Id = Id;
+        this.Value = value;
+    }
+
     public String getId() {
         return Id;
     }

@@ -24,4 +24,25 @@ public class DB {
         return hash.get("token1");// получение не правильное или запись
     }
 
+    public static void DeleteDataFromDB(Context context){
+        WaspDb Db = WaspFactory.openOrCreateDatabase(context.getFilesDir().getPath(), "KonfDB","pass");
+        WaspHash hash = Db.openOrCreateHash("Token");
+
+        hash.remove("token1");
+    }
+
+    public static void SetPage(String number, Context context){
+        WaspDb Db = WaspFactory.openOrCreateDatabase(context.getFilesDir().getPath(), "KonfDB", "pass");
+        WaspHash hash = Db.openOrCreateHash("PageNumber");
+
+        hash.put("Page", number);
+    }
+
+    public static String GetPage(Context context){
+        WaspDb Db = WaspFactory.openOrCreateDatabase(context.getFilesDir().getPath(), "KonfDB", "pass");
+        WaspHash hash = Db.openOrCreateHash("PageNumber");
+
+        return hash.get("Page");
+    }
+
 }

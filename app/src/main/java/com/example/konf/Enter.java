@@ -13,13 +13,10 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.konf.API.Models.User.RegSetting;
 import com.example.konf.API.Models.User.Token;
 
 import static com.example.konf.API.API.ForgotPass;
-import static com.example.konf.API.API.GetRegistSetting;
 import static com.example.konf.API.API.GetToken;
-import static com.example.konf.API.DB.SetToken;
 
 public class Enter extends AppCompatActivity {
 
